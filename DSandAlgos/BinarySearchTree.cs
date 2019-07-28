@@ -13,7 +13,7 @@ namespace DSandAlgos
                 data = i;
             }
         }
-        Node root;
+        public Node root;
         public BinarySearchTree()
         {
             root = null;
@@ -65,7 +65,7 @@ namespace DSandAlgos
                 return 0;
             }
             Node cur = root;
-            while (cur != null)
+            while (cur.left != null)
             {
                 cur = cur.left;
                 
@@ -79,7 +79,7 @@ namespace DSandAlgos
                 return 0;
             }
             Node cur = root;
-            while (cur != null)
+            while (cur.right != null)
             {
                 cur = cur.right;
 
