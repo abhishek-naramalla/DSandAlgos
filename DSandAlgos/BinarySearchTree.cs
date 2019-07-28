@@ -57,25 +57,34 @@ namespace DSandAlgos
 
         }
 
-        public void PreOrder(Node item)
-        {
-            Console.WriteLine(item.data);
-            PreOrder(item.left);
-            PreOrder(item.right);
-        }
-        public void InOrder(Node item)
-        {
 
-            InOrder(item.left);
-            Console.WriteLine(item.data);
-            InOrder(item.right);
-        }
-        public void PostOrder(Node item)
+        public int FindMin(Node root)
         {
+            if (root == null)
+            {
+                return 0;
+            }
+            Node cur = root;
+            while (cur != null)
+            {
+                cur = cur.left;
+                
+            }
+            return cur.data;
+        }
+        public int FindMax(Node root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+            Node cur = root;
+            while (cur != null)
+            {
+                cur = cur.right;
 
-            PostOrder(item.left);
-            PostOrder(item.right);
-            Console.WriteLine(item.data);
+            }
+            return cur.data;
         }
 
 
