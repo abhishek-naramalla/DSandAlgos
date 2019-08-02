@@ -14,6 +14,7 @@ namespace DSandAlgos
             }
         }
         public Node root;
+        public Node parent;
         public BinarySearchTree()
         {
             root = null;
@@ -30,7 +31,7 @@ namespace DSandAlgos
             else
             {
                 Node current = root;
-                Node parent;
+                
                 while (true)
                 {
                     parent = current;
@@ -86,7 +87,107 @@ namespace DSandAlgos
             }
             return cur.data;
         }
+        public Node FindMinNode(Node root)
+        {
+            if (root == null)
+            {
+                return root;
+            }
+            Node cur = root;
+            
+            while (cur.left != null)
+            {
+                parent = cur;
+                cur = cur.left;
 
+            }
+            return cur;
+        }
+
+
+        //Without recursion - refer book with recursion
+        public Node DeleteNode(Node root,int value)
+        {
+            
+            if (root == null)
+            {
+                return root;
+            }
+            parent = root;
+            var isleft = true;
+            //find the node which we have to delete.
+            while (root.data != value)
+            {
+                parent = root;
+                if (root.data > value)
+                {
+                    
+                    root = root.left;
+                }
+                else if (root.data < value)
+                {
+                    isleft = false;
+                    root = root.right;
+                }
+            }
+            //after this while block - root will be node which we need to delete.
+           
+            //node leaf node
+            if (root.left == null && root.right == null)
+            {
+                if (isleft) { parent.left = null; }
+                else { parent.right = null; }
+                root = null;
+                return parent;
+            }
+            else if (root.left == null)
+            {
+                if (isleft)
+                {
+                    parent.left = root.right;
+                    //root = null;
+                }
+                parent.right = root.right;
+                root = null;
+            }
+            else if (root.right == null)
+            {
+                if (isleft)
+                {
+                    parent.left = root.left;
+                    //root = null;
+                }
+                parent.right = root.left;
+                root = null;
+            }
+
+            //When root has both nodes -
+
+            var minNode = FindMinNode(root.right);
+
+            //replace root with Min
+
+            root.data = minNode.data;
+
+            //
+            if (isleft)
+            {
+                parent.left = null;
+            }
+            else
+            {
+                parent.right = null;
+            }
+
+
+
+
+
+
+
+            return parent;
+
+        }
 
     }
 }
